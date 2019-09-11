@@ -15,7 +15,6 @@ public class Order
     @Column(nullable = false)
     private double ordamount;
     private double advanceamount;
-    private String ordderscription;
 
     @ManyToOne
     @JoinColumn(name = "custcode",
@@ -23,14 +22,16 @@ public class Order
     @JsonIgnoreProperties("ordnum")
     private Customer customer;
 
+    private String ordderscription;
+
     public Order() {
     }
 
-    public Order(double ordamount, double advanceamount, String ordderscription, Customer customer) {
+    public Order(double ordamount, double advanceamount, Customer customer, String ordderscription) {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
-        this.ordderscription = ordderscription;
         this.customer = customer;
+        this.ordderscription = ordderscription;
     }
 
     public long getOrdnum() {

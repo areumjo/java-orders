@@ -22,7 +22,7 @@ public class Customer
     private double receiveamt;
     private double paymentamt;
     private double outstatndingamt;
-    private Stiring phone;
+    private String phone;
 
     // one agent to many customers ==> many (customers) to one (agent)
     @ManyToOne
@@ -31,10 +31,17 @@ public class Customer
     @JsonIgnoreProperties("custcode")
     private Agent agent;
 
+    // one customer to many orders
+    @OneToMany(mappedBy = "custcode",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties("custcode")
+    private List<Order> orders = new ArrayList<>();
+
     public Customer() {
     }
 
-    public Customer(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstatndingamt, Stiring phone, Agent agent) {
+    public Customer(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstatndingamt, String phone, Agent agent) {
         this.custname = custname;
         this.custcity = custcity;
         this.workingarea = workingarea;
@@ -128,11 +135,11 @@ public class Customer
         this.outstatndingamt = outstatndingamt;
     }
 
-    public Stiring getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Stiring phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
