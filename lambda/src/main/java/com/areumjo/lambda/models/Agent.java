@@ -23,7 +23,7 @@ public class Agent
     private String string;
 
     // one (agent) to many (customers)
-    @OneToMany(mappedBy = "agentcode",
+    @OneToMany(mappedBy = "agent",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
     @JsonIgnoreProperties("agentcode")

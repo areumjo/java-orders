@@ -3,6 +3,8 @@ package com.areumjo.lambda.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -32,7 +34,7 @@ public class Customer
     private Agent agent;
 
     // one customer to many orders
-    @OneToMany(mappedBy = "custcode",
+    @OneToMany(mappedBy = "customer",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("custcode")

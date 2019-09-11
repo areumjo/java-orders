@@ -4,6 +4,10 @@ import com.areumjo.lambda.models.Agent;
 import com.areumjo.lambda.models.Customer;
 import com.areumjo.lambda.models.Order;
 
+import com.areumjo.lambda.repos.AgentRepository;
+import com.areumjo.lambda.repos.CustomerRepository;
+import com.areumjo.lambda.repos.OrderRepository;
+import com.areumjo.lambda.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,11 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SeedData implements CommandLineRunner
 {
-    private CustomersRepository custrepos;
-    private AgentsRepository agentrepos;
-    private OrdersRepository ordersrepos;
+//    @Autowired
+//    CustomerService custrepos;
+//    AgentService agentrepos;
+//    OrderService ordersrepos;
 
-    public SeedData(CustomersRepository custrepos, AgentsRepository agentrepos, OrdersRepository ordersrepos)
+    private CustomerRepository custrepos;
+    private AgentRepository agentrepos;
+    private OrderRepository ordersrepos;
+
+    public SeedData(CustomerRepository custrepos, AgentRepository agentrepos, OrderRepository ordersrepos)
     {
         this.custrepos = custrepos;
         this.agentrepos = agentrepos;
@@ -25,7 +34,7 @@ public class SeedData implements CommandLineRunner
     }
 
     @Override
-    public void run(String... args) throws Exception
+    public void run(String[] args) throws Exception
     {
         Agent a01 = new Agent("Ramasundar", "Bangalore", 0.15, "077-25814763", "");
         Agent a02 = new Agent("Alex ", "London", 0.13, "075-12458969", "");
